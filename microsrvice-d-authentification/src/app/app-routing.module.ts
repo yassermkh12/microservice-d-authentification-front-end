@@ -4,7 +4,7 @@ import { LoginComponent } from './component/login/login.component';
 import { LogoutComponent } from './component/logout/logout.component';
 
 const routes: Routes = [
-  {path : 'login', component : LogoutComponent}
+  {path : 'login', component : LoginComponent}
 ];
 
 @NgModule({
