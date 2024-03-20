@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationRequest } from 'src/app/models/authentication-request';
 import { AuthenticationServiceService } from 'src/app/services/authentication-service.service';
-import { HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
+import { AuthenticationInterceptor } from 'src/app/interceptors/authentication.interceptor';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class LoginComponent {
   formSubmitted : boolean = false;
 
   token : any;
-  refrechToken : string = '';
+  refrechToken : any;
 
   request : any;
 
@@ -49,8 +50,8 @@ export class LoginComponent {
         authenticationResponse => {
 
           this.token = authenticationResponse.token;
-          // this.token = authenticationResponse.token;
-          // this.refrechToken = authenticationResponse.refrechToken;
+          localStorage.setItem('token', this.token);
+          this.refrechToken = authenticationResponse.refrechToken;
           // console.log("l authentification est bonne");
           // console.log("token : ", this.token);
           // console.log("refrech token : ", this.refrechToken); 
@@ -63,9 +64,6 @@ export class LoginComponent {
           console.log("decode token : ",decodedToken)
           const username = decodedToken.sub
           console.log("username : ", username)
-
-
-          localStorage.setItem('token', this.token);
 
           console.log("locale storage : ", localStorage.getItem('token'));
 
