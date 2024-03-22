@@ -9,6 +9,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LogoutComponent implements OnInit {
 
+  isloggin : boolean = true;
+
   constructor(
     private userService : UserService,
     private router : Router
@@ -28,6 +30,7 @@ export class LogoutComponent implements OnInit {
 
   logout(){
     localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    this.router.navigateByUrl('/login');
+    
   }
 }

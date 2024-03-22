@@ -36,9 +36,12 @@ export class LoginComponent {
 
   request : any;
 
+  isloggin : boolean = false;
+
   login(){
     
     this.formSubmitted = true;
+    this.isloggin = true;
 
     if(this.authenticationRequestForm.valid){
       const authenticationRequest : AuthenticationRequest = {
@@ -69,6 +72,7 @@ export class LoginComponent {
 
           this.router.navigate(['/logout']);
         
+          
           // console.log("HEADER : ", authenticationResponse.headers)
         }
       )
