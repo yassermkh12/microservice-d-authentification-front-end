@@ -1,4 +1,4 @@
 export interface AuthenticationResponse {
-    Token : String;
+    token : String;
     refrechToken : String;
 }
