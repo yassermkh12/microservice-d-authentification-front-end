@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
+import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -11,10 +13,17 @@ export class LogoutComponent implements OnInit {
 
   isloggin : boolean = true;
 
+  users : User[] = [];
+
   constructor(
     private userService : UserService,
     private router : Router
     ){}
+
+  token : any = localStorage.getItem('token');
+
+  decodedToken = jwtDecode(this.token);
+  username = this.decodedToken.sub
 
   ngOnInit(): void {
     this.getUser();
@@ -24,6 +33,7 @@ export class LogoutComponent implements OnInit {
     this.userService.getUser().subscribe(
       user => {
         console.log(user);
+        this.users = user;
       }
     )
   }

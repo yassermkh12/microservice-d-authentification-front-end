@@ -52,9 +52,9 @@ export class LoginComponent {
       this.authenticationService.authenticate(authenticationRequest).subscribe(
         authenticationResponse => {
 
-          this.token = authenticationResponse.token;
+          this.token = authenticationResponse.token
           localStorage.setItem('token', this.token);
-          this.refrechToken = authenticationResponse.refrechToken;
+          // this.refrechToken = authenticationResponse.refrechToken;
           // console.log("l authentification est bonne");
           // console.log("token : ", this.token);
           // console.log("refrech token : ", this.refrechToken); 
