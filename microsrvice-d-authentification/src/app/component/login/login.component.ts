@@ -54,10 +54,11 @@ export class LoginComponent {
 
           this.token = authenticationResponse.token
           localStorage.setItem('token', this.token);
-          // this.refrechToken = authenticationResponse.refrechToken;
+          this.refrechToken = authenticationResponse.refrechToken;
+          localStorage.setItem('refrechToken', this.refrechToken);
           // console.log("l authentification est bonne");
-          // console.log("token : ", this.token);
-          // console.log("refrech token : ", this.refrechToken); 
+          console.log("token : ", this.token);
+          console.log("refrech token : ", this.refrechToken); 
 
           // const header = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
           // console.log("HEADER : ", header);
@@ -67,8 +68,6 @@ export class LoginComponent {
           console.log("decode token : ",decodedToken)
           const username = decodedToken.sub
           console.log("username : ", username)
-
-          console.log("locale storage : ", localStorage.getItem('token'));
 
           this.router.navigate(['/logout']);
         
